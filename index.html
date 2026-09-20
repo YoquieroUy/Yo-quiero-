@@ -1069,7 +1069,7 @@ function updateAddressField() {
 
     const delivery =
       document.getElementById("delivery").value;
-
+const shippingType = document.getElementById("shippingType").value;
     const address =
       document.getElementById("address").value.trim();
 
@@ -1086,11 +1086,11 @@ function updateAddressField() {
     }
 
 
-    if (
-      delivery === "Envío a domicilio" &&
-      !address
-    ) {
-
+  if (
+  delivery === "shipping" &&
+  shippingType === "Envío a domicilio" &&
+  !address
+) {
       alert("Ingresá la dirección de envío.");
 
       return;
@@ -1115,7 +1115,7 @@ function updateAddressField() {
       `💳 Pago: ${payment}%0A`;
 
 
-    if (delivery === "Envío a domicilio") {
+    if (delivery === "shipping") {
 
       message +=
         `📍 Dirección: ${address}%0A`;
