@@ -1050,133 +1050,112 @@ function updateAddressField() {
   }
 
 }
-  function sendOrder() {
+ function sendOrder() {
 
-    if (cart.length === 0) {
-
-      alert("Tu carrito está vacío.");
-
-      return;
-
-    }
-
-
-    let name, phone, delivery, shippingType, address, payment;
-
-try {
-
-  name =
-    document.getElementById("customerName").value.trim();
-
-  phone =
-    document.getElementById("customerPhone").value.trim();
-
-  delivery =
-    document.getElementById("delivery").value;
-
-  shippingType =
-    document.getElementById("shippingType").value;
-
-  address =
-    document.getElementById("address").value.trim();
-
-  payment =
-    document.getElementById("payment").value;
-
-} catch (error) {
-
-  alert("Encontré el problema: " + error.message);
-  return;
-
-}
-
-
-    if (!name || !phone) {
-
-      alert("Completá tu nombre y teléfono.");
-
-      return;
-
-    }
-
-
-  if (
-  delivery === "shipping" &&
-  shippingType === "Envío a domicilio" &&
-  !address
-) {
-      alert("Ingresá la dirección de envío.");
-
-      return;
-
-    }
-
-alert("Llegué al mensaje");
-    let message =
-      "🛍️ *NUEVO PEDIDO — YO QUIERO*%0A%0A";
-
-
-    message +=
-      `👤 Nombre: ${name}%0A`;
-
-    message +=
-      `📱 Teléfono: ${phone}%0A`;
-
-    message +=
-      `🚚 Entrega: ${delivery}%0A`;
-
-    message +=
-      `💳 Pago: ${payment}%0A`;
-
-
-    if (delivery === "shipping") {
-
-      message +=
-        `📍 Dirección: ${address}%0A`;
-
-    }
-
-
-    message += "%0A*PRODUCTOS:*%0A";
-
-
-    let total = 0;
-
-
-    cart.forEach(item => {
-
-      const product =
-        products.find(product => product.id === item.id);
-
-      if (!product) return;
-
-
-      const subtotal =
-        product.price * item.quantity;
-
-      total += subtotal;
-
-
-      message +=
-        `• ${product.name} x${item.quantity} — $${subtotal}%0A`;
-
-    });
-
-
-    message += `%0A💰 *TOTAL: $${total}*`;
-
-
-    const whatsapp =
-      "59899524468";
-
-    
-    window.open(
-      `https://wa.me/${whatsapp}?text=${message}`,
-      "_blank"
-    );
-
+  if (cart.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
   }
 
+  const nameElement = document.getElementById("customerName");
+  const phoneElement = document.getElementById("customerPhone");
+  const deliveryElement = document.getElementById("delivery");
+  const shippingTypeElement = document.getElementById("shippingType");
+  const addressElement = document.getElementById("address");
+  const paymentElement = document.getElementById("payment");
+
+  if (
+    !nameElement ||
+    !phoneElement ||
+    !deliveryElement ||
+    !shippingTypeElement ||
+    !addressElement ||
+    !paymentElement
+  ) {
+    alert("Hay un problema con uno de los campos del pedido.");
+    return;
+  }
+
+  const name = nameElement.value.trim();
+  const phone = phoneElement.value.trim();
+  const delivery = deliveryElement.value;
+  const shippingType = shippingTypeElement.value;
+  const address = addressElement.value.trim();
+  const payment = paymentElement.value;
+
+  if (!name || !phone) {
+    alert("Completá tu nombre y teléfono.");
+    return;
+  }
+
+  if (
+    delivery === "shipping" &&
+    shippingType === "Envío a domicilio" &&
+    !address
+  ) {
+    alert("Ingresá la dirección de envío.");
+    return;
+  }
+
+  let message =
+    "🛍️ *NUEVO PEDIDO — YO QUIERO*%0A%0A";
+
+  message +=
+    `👤 Nombre: ${name}%0A`;
+
+  message +=
+    `📱 Teléfono: ${phone}%0A`;
+
+  message +=
+    `🚚 Entrega: ${delivery}%0A`;
+
+  if (delivery === "shipping") {
+    message +=
+      `📦 Recibir: ${shippingType}%0A`;
+  }
+
+  if (delivery === "shipping") {
+    message +=
+      `📍 Localidad / departamento: ${address}%0A`;
+  }
+
+  message +=
+    `💳 Pago: ${payment}%0A`;
+
+  message +=
+    "%0A*PRODUCTOS:*%0A";
+
+  let total = 0;
+
+  cart.forEach(item => {
+
+    const product =
+      products.find(product => product.id === item.id);
+
+    if (!product) return;
+
+    const subtotal =
+      product.price * item.quantity;
+
+    total += subtotal;
+
+    message +=
+      `• ${product.name} x${item.quantity} — $${subtotal}%0A`;
+
+  });
+
+  message +=
+    `%0A💰 *TOTAL: $${total}*`;
+
+  const whatsapp =
+    "59899524468";
+
+  window.open(
+    `https://wa.me/${whatsapp}?text=${message}`,
+    "_blank"
+  );
+
+}
 
   document
     .getElementById("cartOverlay")
