@@ -1,483 +1,1098 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YO QUIERO | Maquillaje, perfumes y más</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YO QUIERO | Tienda online</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #fffafa;
-            color: #222;
-        }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffafc;
+      color: #222;
+    }
 
-        header {
-            background: white;
-            padding: 25px 6%;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        .header-content {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-        .logo {
-            font-size: 30px;
-            letter-spacing: 3px;
-            font-weight: bold;
-        }
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #222;
+    }
 
-        nav a {
-            text-decoration: none;
-            color: #222;
-            margin-left: 20px;
-            font-size: 14px;
-        }
+    .cart-button {
+      border: none;
+      background: #222;
+      color: white;
+      padding: 11px 17px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: #f8e8ec;
-        }
+    .hero {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 55px 25px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f8dce8, #f4e7dc);
+      text-align: center;
+    }
 
-        .hero h1 {
-            font-size: 48px;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-        }
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
 
-        .hero p {
-            font-size: 17px;
-            margin-bottom: 25px;
-        }
+    .hero p {
+      font-size: 17px;
+      margin-bottom: 22px;
+    }
 
-        .button {
-            display: inline-block;
-            background: #222;
-            color: white;
-            padding: 13px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-        }
+    .hero-button {
+      display: inline-block;
+      background: #222;
+      color: white;
+      text-decoration: none;
+      padding: 13px 22px;
+      border-radius: 25px;
+      font-weight: bold;
+    }
 
-        .section {
-            max-width: 1200px;
-            margin: auto;
-            padding: 50px 20px;
-        }
+    .section {
+      max-width: 1200px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
 
-        .section h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
 
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-        }
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
 
-        .category {
-            background: white;
-            border: 1px solid #eee;
-            padding: 20px 10px;
-            text-align: center;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+    .category {
+      border: 1px solid #eee;
+      background: white;
+      border-radius: 16px;
+      padding: 20px 10px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
 
-        .category:hover {
-            transform: translateY(-3px);
-        }
+    .category:hover {
+      transform: translateY(-2px);
+      border-color: #222;
+    }
 
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
+    .filters {
+      background: white;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid #eee;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
 
-        select, input {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: white;
-        }
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: white;
+      font-size: 14px;
+    }
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 20px;
+    }
 
-        .product {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 15px;
-            overflow: hidden;
-            padding-bottom: 18px;
-        }
+    .product {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.2s;
+    }
 
-        .product-image {
-            height: 250px;
-            background: #f3eeee;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #999;
-        }
+    .product:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
 
-        .product-info {
-            padding: 15px;
-        }
+    .product-image {
+      height: 220px;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 14px;
+    }
 
-        .product-info h3 {
-            margin-bottom: 7px;
-        }
+    .product-info {
+      padding: 16px;
+    }
 
-        .price {
-            font-weight: bold;
-            font-size: 19px;
-            margin-bottom: 12px;
-        }
+    .brand {
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
 
-        .product button {
-            width: 100%;
-        }
+    .product-name {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
 
-        .cart {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            background: #222;
-            color: white;
-            border-radius: 50px;
-            padding: 15px 20px;
-            cursor: pointer;
-            z-index: 20;
-        }
+    .description {
+      font-size: 13px;
+      color: #666;
+      min-height: 34px;
+      margin-bottom: 10px;
+    }
 
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-        }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 36px;
-            }
+    .old-price {
+      color: #999;
+      text-decoration: line-through;
+      font-size: 14px;
+      margin-right: 5px;
+    }
 
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
+    .stock {
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
 
-            nav a {
-                margin: 0 7px;
-            }
-        }
-    </style>
+    .available {
+      color: #2d7a42;
+    }
+
+    .sold-out {
+      color: #b3261e;
+    }
+
+    .add-button {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 10px;
+      background: #222;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .add-button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .offers {
+      background: #222;
+      color: white;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .offers h2 {
+      margin-bottom: 8px;
+    }
+
+    .cart-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 200;
+    }
+
+    .cart {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: min(430px, 100%);
+      background: white;
+      padding: 22px;
+      overflow-y: auto;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .close-cart {
+      border: none;
+      background: transparent;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      border-bottom: 1px solid #eee;
+      padding: 14px 0;
+    }
+
+    .cart-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .quantity-controls button {
+      border: 1px solid #ddd;
+      background: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .cart-total {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    .checkout {
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+
+    .checkout label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin: 12px 0 6px;
+    }
+
+    .whatsapp-button {
+      width: 100%;
+      border: none;
+      background: #25d366;
+      color: white;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .empty-cart {
+      color: #777;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    footer {
+      margin-top: 60px;
+      background: #222;
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 7px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .filters {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .header-inner {
+        padding: 14px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-    <div class="header-content">
-        <div class="logo">YO QUIERO</div>
+  <div class="header-inner">
+    <div class="logo">YO QUIERO</div>
 
-        <nav>
-            <a href="#categorias">Categorías</a>
-            <a href="#productos">Productos</a>
-            <a href="#ofertas">Ofertas</a>
-        </nav>
-    </div>
+    <button class="cart-button" onclick="openCart()">
+      🛒 Carrito (<span id="cartCount">0</span>)
+    </button>
+  </div>
 </header>
 
-<section class="hero">
+<main>
+
+  <section class="hero">
     <h1>YO QUIERO</h1>
-    <p>Maquillaje · Perfumes · Skincare · Accesorios</p>
-    <a href="#productos" class="button">Ver productos</a>
-</section>
+    <p>Maquillaje, skincare, perfumes, accesorios y mucho más.</p>
+    <a href="#productos" class="hero-button">Ver productos</a>
+  </section>
 
-<section class="section" id="categorias">
+  <section class="section">
 
-    <h2>Categorías</h2>
+    <h2 class="section-title">Categorías</h2>
 
     <div class="categories">
-        <div class="category">💋 Labios</div>
-        <div class="category">✨ Rostro</div>
-        <div class="category">🧰 Accesorios y herramientas</div>
-        <div class="category">👁️ Ojos y pestañas</div>
-        <div class="category">🧴 Skincare</div>
-        <div class="category">🌸 Perfumes</div>
-        <div class="category">💅 Uñas</div>
-        <div class="category">🎨 Paletas</div>
+
+      <div class="category" onclick="setCategory('Labios')">
+        💄 Labios
+      </div>
+
+      <div class="category" onclick="setCategory('Rostro')">
+        ✨ Rostro
+      </div>
+
+      <div class="category" onclick="setCategory('Accesorios y herramientas')">
+        👜 Accesorios
+      </div>
+
+      <div class="category" onclick="setCategory('Ojos y pestañas')">
+        👁️ Ojos y pestañas
+      </div>
+
+      <div class="category" onclick="setCategory('Skincare')">
+        🧴 Skincare
+      </div>
+
+      <div class="category" onclick="setCategory('Perfumes')">
+        🌸 Perfumes
+      </div>
+
+      <div class="category" onclick="setCategory('Uñas')">
+        💅 Uñas
+      </div>
+
+      <div class="category" onclick="setCategory('Paletas')">
+        🎨 Paletas
+      </div>
+
+      <div class="category" onclick="setCategory('all')">
+        🛍️ Ver todo
+      </div>
+
     </div>
 
-</section>
+  </section>
 
-<section class="section" id="productos">
+  <section class="section">
 
-    <h2>Productos</h2>
+    <div class="offers">
+      <h2>🔥 Ofertas</h2>
+      <p>Encontrá productos seleccionados a precios especiales.</p>
+    </div>
+
+    <h2 class="section-title" id="productos">Productos</h2>
 
     <div class="filters">
 
-        <input
-            type="text"
-            id="search"
-            placeholder="Buscar producto..."
-            onkeyup="filterProducts()"
-        >
+      <input
+        type="text"
+        id="search"
+        placeholder="🔎 Buscar producto..."
+        oninput="renderProducts()"
+      >
 
-        <select id="categoryFilter" onchange="filterProducts()">
-            <option value="all">Todas las categorías</option>
-            <option value="Labios">Labios</option>
-            <option value="Rostro">Rostro</option>
-            <option value="Accesorios y herramientas">Accesorios y herramientas</option>
-            <option value="Ojos y pestañas">Ojos y pestañas</option>
-            <option value="Skincare">Skincare</option>
-            <option value="Perfumes">Perfumes</option>
-            <option value="Uñas">Uñas</option>
-            <option value="Paletas">Paletas</option>
-        </select>
+      <select id="categoryFilter" onchange="renderProducts()">
+        <option value="all">Todas las categorías</option>
+        <option value="Labios">Labios</option>
+        <option value="Rostro">Rostro</option>
+        <option value="Accesorios y herramientas">Accesorios y herramientas</option>
+        <option value="Ojos y pestañas">Ojos y pestañas</option>
+        <option value="Skincare">Skincare</option>
+        <option value="Perfumes">Perfumes</option>
+        <option value="Uñas">Uñas</option>
+        <option value="Paletas">Paletas</option>
+      </select>
 
-        <select id="stockFilter" onchange="filterProducts()">
-            <option value="all">Todo</option>
-            <option value="stock">En stock</option>
-            <option value="out">Agotado</option>
-        </select>
+      <select id="brandFilter" onchange="renderProducts()">
+        <option value="all">Todas las marcas</option>
+        <option value="Victoria's Secret">Victoria's Secret</option>
+        <option value="YO QUIERO">YO QUIERO</option>
+      </select>
 
-    </div>
-
-    <div class="products" id="productList">
-
-        <div class="product"
-             data-category="Perfumes"
-             data-stock="stock"
-             data-name="Body Splash Velvet Petals">
-
-            <div class="product-image">
-                FOTO DEL PRODUCTO
-            </div>
-
-            <div class="product-info">
-                <h3>Velvet Petals</h3>
-                <p>Body Splash</p>
-                <br>
-                <div class="price">$980</div>
-                <button class="button"
-                    onclick="addToCart('Velvet Petals', 980)">
-                    Agregar al carrito
-                </button>
-            </div>
-
-        </div>
-
-        <div class="product"
-             data-category="Perfumes"
-             data-stock="stock"
-             data-name="Body Splash Bare Vanilla">
-
-            <div class="product-image">
-                FOTO DEL PRODUCTO
-            </div>
-
-            <div class="product-info">
-                <h3>Bare Vanilla</h3>
-                <p>Body Splash</p>
-                <br>
-                <div class="price">$980</div>
-                <button class="button"
-                    onclick="addToCart('Bare Vanilla', 980)">
-                    Agregar al carrito
-                </button>
-            </div>
-
-        </div>
+      <select id="stockFilter" onchange="renderProducts()">
+        <option value="all">Todo</option>
+        <option value="available">En stock</option>
+        <option value="soldout">Agotados</option>
+      </select>
 
     </div>
 
-</section>
+    <div class="products" id="products"></div>
 
-<section class="section" id="ofertas">
+  </section>
 
-    <h2>Ofertas</h2>
+</main>
 
-    <p style="text-align:center;">
-        Próximamente vas a encontrar nuestras promociones especiales.
-    </p>
+<div class="cart-overlay" id="cartOverlay">
 
-</section>
+  <div class="cart">
 
-<div class="cart" onclick="showCart()">
-    🛒 Carrito (<span id="cartCount">0</span>)
+    <div class="cart-header">
+      <h2>Tu carrito</h2>
+      <button class="close-cart" onclick="closeCart()">×</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+      Total: $<span id="cartTotal">0</span>
+    </div>
+
+    <div class="checkout">
+
+      <h3>Finalizar pedido</h3>
+
+      <label for="customerName">Nombre</label>
+      <input id="customerName" type="text" placeholder="Tu nombre">
+
+      <label for="customerPhone">Teléfono</label>
+      <input id="customerPhone" type="tel" placeholder="Tu teléfono">
+
+      <label for="delivery">Entrega</label>
+      <select id="delivery">
+        <option value="Retiro en Pequeños Genios">
+          Retiro en Pequeños Genios
+        </option>
+
+        <option value="Envío a domicilio">
+          Envío a domicilio
+        </option>
+      </select>
+
+      <label for="address">Dirección</label>
+      <input
+        id="address"
+        type="text"
+        placeholder="Dirección para el envío"
+      >
+
+      <label for="payment">Medio de pago</label>
+
+      <select id="payment">
+
+        <option value="Transferencia BROU">
+          Transferencia BROU
+        </option>
+
+        <option value="Mercado Pago">
+          Mercado Pago
+        </option>
+
+        <option value="Efectivo">
+          Efectivo
+        </option>
+
+        <option value="Débito">
+          Débito
+        </option>
+
+        <option value="Crédito hasta 12 cuotas">
+          Crédito hasta 12 cuotas
+        </option>
+
+      </select>
+
+      <button class="whatsapp-button" onclick="sendOrder()">
+        Finalizar pedido por WhatsApp
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
 
 <footer>
 
-    <h3>YO QUIERO</h3>
+  <p><strong>YO QUIERO</strong></p>
 
-    <p style="margin-top:10px;">
-        Maquillaje · Perfumes · Skincare · Accesorios
-    </p>
+  <p>📱 WhatsApp: 099 524 468</p>
 
-    <p style="margin-top:15px;">
-        Instagram y TikTok: @yo.quiero.uy
-    </p>
+  <p>📸 Instagram: @yo.quiero.uy</p>
 
-    <p style="margin-top:10px;">
-        Retiro en Pequeños Genios · Envíos a todo el país
-    </p>
+  <p>🎵 TikTok: @yo.quiero.uy</p>
+
+  <p>📍 Retiro en Pequeños Genios</p>
+
+  <p>🚚 Envíos a todo el país</p>
 
 </footer>
 
+
 <script>
 
-let cart = [];
+  /*
+    =====================================================
+    PRODUCTOS
+    =====================================================
 
-function addToCart(name, price) {
+    ACÁ VAMOS A IR AGREGANDO TUS PRODUCTOS.
 
-    let existing = cart.find(item => item.name === name);
+    Por ahora hay dos productos de ejemplo.
+  */
+
+  const products = [
+
+    {
+      id: 1,
+      name: "Velvet Petals",
+      brand: "Victoria's Secret",
+      category: "Perfumes",
+      price: 980,
+      oldPrice: null,
+      description: "Body Splash original.",
+      stock: 5,
+      image: ""
+    },
+
+    {
+      id: 2,
+      name: "Bare Vanilla",
+      brand: "Victoria's Secret",
+      category: "Perfumes",
+      price: 980,
+      oldPrice: null,
+      description: "Body Splash original.",
+      stock: 5,
+      image: ""
+    }
+
+  ];
+
+
+  let cart = [];
+
+
+  function renderProducts() {
+
+    const container = document.getElementById("products");
+
+    const search =
+      document.getElementById("search").value.toLowerCase();
+
+    const category =
+      document.getElementById("categoryFilter").value;
+
+    const brand =
+      document.getElementById("brandFilter").value;
+
+    const stock =
+      document.getElementById("stockFilter").value;
+
+
+    const filtered = products.filter(product => {
+
+      const matchesSearch =
+        product.name.toLowerCase().includes(search) ||
+        product.brand.toLowerCase().includes(search);
+
+      const matchesCategory =
+        category === "all" ||
+        product.category === category;
+
+      const matchesBrand =
+        brand === "all" ||
+        product.brand === brand;
+
+      const matchesStock =
+        stock === "all" ||
+        (stock === "available" && product.stock > 0) ||
+        (stock === "soldout" && product.stock <= 0);
+
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesBrand &&
+        matchesStock
+      );
+
+    });
+
+
+    container.innerHTML = "";
+
+
+    if (filtered.length === 0) {
+
+      container.innerHTML =
+        '<p style="grid-column:1/-1;text-align:center;color:#777;padding:30px;">No encontramos productos con esos filtros.</p>';
+
+      return;
+
+    }
+
+
+    filtered.forEach(product => {
+
+      const card = document.createElement("div");
+
+      card.className = "product";
+
+
+      const imageHTML = product.image
+        ? `<img src="${product.image}" style="width:100%;height:220px;object-fit:cover;">`
+        : `<div class="product-image">Foto del producto</div>`;
+
+
+      const priceHTML = product.oldPrice
+        ? `<div class="price">
+             <span class="old-price">$${product.oldPrice}</span>
+             $${product.price}
+           </div>`
+        : `<div class="price">$${product.price}</div>`;
+
+
+      const stockHTML = product.stock > 0
+        ? `<div class="stock available">● En stock</div>`
+        : `<div class="stock sold-out">● Agotado</div>`;
+
+
+      card.innerHTML = `
+
+        ${imageHTML}
+
+        <div class="product-info">
+
+          <div class="brand">
+            ${product.brand}
+          </div>
+
+          <div class="product-name">
+            ${product.name}
+          </div>
+
+          <div class="description">
+            ${product.description}
+          </div>
+
+          ${priceHTML}
+
+          ${stockHTML}
+
+          <button
+            class="add-button"
+            onclick="addToCart(${product.id})"
+            ${product.stock <= 0 ? "disabled" : ""}
+          >
+            ${product.stock > 0 ? "Agregar al carrito" : "Agotado"}
+          </button>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(card);
+
+    });
+
+  }
+
+
+  function setCategory(category) {
+
+    document.getElementById("categoryFilter").value = category;
+
+    document
+      .getElementById("productos")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+    renderProducts();
+
+  }
+
+
+  function addToCart(id) {
+
+    const product =
+      products.find(p => p.id === id);
+
+    if (!product || product.stock <= 0) return;
+
+
+    const existing =
+      cart.find(item => item.id === id);
+
 
     if (existing) {
+
+      if (existing.quantity < product.stock) {
         existing.quantity++;
+      }
+
     } else {
-        cart.push({
-            name: name,
-            price: price,
-            quantity: 1
-        });
+
+      cart.push({
+        id: id,
+        quantity: 1
+      });
+
     }
 
-    updateCart();
 
-    alert("Producto agregado al carrito");
-}
+    renderCart();
 
-function updateCart() {
+  }
 
-    let totalQuantity = 0;
 
-    cart.forEach(item => {
-        totalQuantity += item.quantity;
-    });
+  function changeQuantity(id, change) {
 
-    document.getElementById("cartCount").innerText = totalQuantity;
-}
+    const item =
+      cart.find(item => item.id === id);
 
-function showCart() {
+    const product =
+      products.find(product => product.id === id);
+
+
+    if (!item || !product) return;
+
+
+    item.quantity += change;
+
+
+    if (item.quantity <= 0) {
+
+      cart =
+        cart.filter(item => item.id !== id);
+
+    }
+
+
+    if (item.quantity > product.stock) {
+
+      item.quantity = product.stock;
+
+    }
+
+
+    renderCart();
+
+  }
+
+
+  function renderCart() {
+
+    const container =
+      document.getElementById("cartItems");
+
+    const count =
+      cart.reduce((sum, item) => sum + item.quantity, 0);
+
+
+    document.getElementById("cartCount").textContent = count;
+
 
     if (cart.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
+
+      container.innerHTML =
+        '<div class="empty-cart">Tu carrito está vacío.</div>';
+
+      document.getElementById("cartTotal").textContent = "0";
+
+      return;
+
     }
 
-    let message = "Hola! Quiero realizar este pedido:%0A%0A";
+
     let total = 0;
+
+    container.innerHTML = "";
+
 
     cart.forEach(item => {
 
-        let subtotal = item.price * item.quantity;
+      const product =
+        products.find(product => product.id === item.id);
 
-        message += item.name +
-            " x" +
-            item.quantity +
-            " - $" +
-            subtotal +
-            "%0A";
+      if (!product) return;
 
-        total += subtotal;
+
+      const subtotal =
+        product.price * item.quantity;
+
+      total += subtotal;
+
+
+      const div =
+        document.createElement("div");
+
+      div.className = "cart-item";
+
+
+      div.innerHTML = `
+
+        <div class="cart-item-top">
+
+          <div>
+
+            <strong>${product.name}</strong>
+
+            <div style="font-size:13px;color:#777;">
+              ${product.brand}
+            </div>
+
+          </div>
+
+          <strong>
+            $${subtotal}
+          </strong>
+
+        </div>
+
+
+        <div class="quantity-controls">
+
+          <button
+            onclick="changeQuantity(${product.id}, -1)"
+          >
+            −
+          </button>
+
+          <span>${item.quantity}</span>
+
+          <button
+            onclick="changeQuantity(${product.id}, 1)"
+          >
+            +
+          </button>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(div);
+
     });
 
-    message += "%0ATotal: $" + total;
 
-    let phone = "5989952468";
+    document.getElementById("cartTotal").textContent =
+      total;
+
+  }
+
+
+  function openCart() {
+
+    document.getElementById("cartOverlay").style.display =
+      "block";
+
+    renderCart();
+
+  }
+
+
+  function closeCart() {
+
+    document.getElementById("cartOverlay").style.display =
+      "none";
+
+  }
+
+
+  function sendOrder() {
+
+    if (cart.length === 0) {
+
+      alert("Tu carrito está vacío.");
+
+      return;
+
+    }
+
+
+    const name =
+      document.getElementById("customerName").value.trim();
+
+    const phone =
+      document.getElementById("customerPhone").value.trim();
+
+    const delivery =
+      document.getElementById("delivery").value;
+
+    const address =
+      document.getElementById("address").value.trim();
+
+    const payment =
+      document.getElementById("payment").value;
+
+
+    if (!name || !phone) {
+
+      alert("Completá tu nombre y teléfono.");
+
+      return;
+
+    }
+
+
+    if (
+      delivery === "Envío a domicilio" &&
+      !address
+    ) {
+
+      alert("Ingresá la dirección de envío.");
+
+      return;
+
+    }
+
+
+    let message =
+      "🛍️ *NUEVO PEDIDO — YO QUIERO*%0A%0A";
+
+
+    message +=
+      `👤 Nombre: ${name}%0A`;
+
+    message +=
+      `📱 Teléfono: ${phone}%0A`;
+
+    message +=
+      `🚚 Entrega: ${delivery}%0A`;
+
+    message +=
+      `💳 Pago: ${payment}%0A`;
+
+
+    if (delivery === "Envío a domicilio") {
+
+      message +=
+        `📍 Dirección: ${address}%0A`;
+
+    }
+
+
+    message += "%0A*PRODUCTOS:*%0A";
+
+
+    let total = 0;
+
+
+    cart.forEach(item => {
+
+      const product =
+        products.find(product => product.id === item.id);
+
+      if (!product) return;
+
+
+      const subtotal =
+        product.price * item.quantity;
+
+      total += subtotal;
+
+
+      message +=
+        `• ${product.name} x${item.quantity} — $${subtotal}%0A`;
+
+    });
+
+
+    message += `%0A💰 *TOTAL: $${total}*`;
+
+
+    const whatsapp =
+      "5989952468";
+
 
     window.open(
-        "https://wa.me/" +
-        phone +
-        "?text=" +
-        message,
-        "_blank"
+      `https://wa.me/${whatsapp}?text=${message}`,
+      "_blank"
     );
-}
 
-function filterProducts() {
+  }
 
-    let search =
-        document.getElementById("search")
-        .value
-        .toLowerCase();
 
-    let category =
-        document.getElementById("categoryFilter")
-        .value;
+  document
+    .getElementById("cartOverlay")
+    .addEventListener("click", function(event) {
 
-    let stock =
-        document.getElementById("stockFilter")
-        .value;
+      if (event.target === this) {
 
-    let products =
-        document.querySelectorAll(".product");
+        closeCart();
 
-    products.forEach(product => {
-
-        let name =
-            product.dataset.name.toLowerCase();
-
-        let productCategory =
-            product.dataset.category;
-
-        let productStock =
-            product.dataset.stock;
-
-        let matchesSearch =
-            name.includes(search);
-
-        let matchesCategory =
-            category === "all" ||
-            productCategory === category;
-
-        let matchesStock =
-            stock === "all" ||
-            (stock === "stock" && productStock === "stock") ||
-            (stock === "out" && productStock === "out");
-
-        if (
-            matchesSearch &&
-            matchesCategory &&
-            matchesStock
-        ) {
-            product.style.display = "block";
-        } else {
-            product.style.display = "none";
-        }
+      }
 
     });
 
-}
+
+  renderProducts();
+
+  renderCart();
 
 </script>
 
