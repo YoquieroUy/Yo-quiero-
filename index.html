@@ -516,19 +516,59 @@
       <label for="customerName">Nombre</label>
       <input id="customerName" type="text" placeholder="Tu nombre">
 
-      <label for="customerPhone">Teléfono</label>
-      <input id="customerPhone" type="tel" placeholder="Tu teléfono">
+     <label for="delivery">Entrega</label>
 
-      <label for="delivery">Entrega</label>
-      <select id="delivery">
-        <option value="Retiro en Pequeños Genios">
-          Retiro en Pequeños Genios
-        </option>
+<select id="delivery" onchange="updateDeliveryOptions()">
 
-        <option value="Envío a domicilio">
-          Envío a domicilio
-        </option>
-      </select>
+  <option value="pickup">
+    📍 Pick Up — GRATIS
+  </option>
+
+  <option value="shipping">
+    📦 Envío — a cargo del cliente
+  </option>
+
+</select>
+
+<div id="shippingOptions" style="display:none;">
+
+  <label for="shippingType">¿Cómo querés recibirlo?</label>
+
+  <select id="shippingType">
+    <option value="Retiro en agencia">
+      📦 Retiro en agencia
+    </option>
+
+    <option value="Envío a domicilio">
+      🏠 Envío a domicilio
+    </option>
+  </select>
+
+  <label for="city">Localidad / departamento</label>
+
+  <input
+    id="city"
+    type="text"
+    placeholder="Ej.: Paysandú"
+  >
+
+  <label for="address" id="addressLabel" style="display:none;">
+    Dirección
+  </label>
+
+  <input
+    id="address"
+    type="text"
+    placeholder="Dirección"
+    style="display:none;"
+  >
+
+  <p style="font-size:12px;color:#777;margin-top:8px;">
+    El costo del envío corre por cuenta del cliente,
+    salvo promociones que indiquen lo contrario.
+  </p>
+
+</div>
 
       <label for="address">Dirección</label>
       <input
@@ -538,30 +578,13 @@
       >
 
       <label for="payment">Medio de pago</label>
-
-      <select id="payment">
-
-        <option value="Transferencia BROU">
-          Transferencia BROU
-        </option>
-
-        <option value="Mercado Pago">
-          Mercado Pago
-        </option>
-
-        <option value="Efectivo">
-          Efectivo
-        </option>
-
-        <option value="Débito">
-          Débito
-        </option>
-
-        <option value="Crédito hasta 12 cuotas">
-          Crédito hasta 12 cuotas
-        </option>
-
-      </select>
+<select id="payment">
+  <option value="BROU">🏦 Transferencia BROU</option>
+  <option value="Mercado Pago">💳 Mercado Pago</option>
+  <option value="Efectivo">💵 Efectivo</option>
+  <option value="Débito">💳 Débito</option>
+  <option value="Crédito hasta 12 cuotas">💳 Crédito hasta 12 cuotas</option>
+</select>
 
       <button class="whatsapp-button" onclick="sendOrder()">
         Finalizar pedido por WhatsApp
@@ -583,7 +606,7 @@
 
   <p>🎵 TikTok: @yo.quiero.uy</p>
 
-  <p>📍 Retiro en Pequeños Genios</p>
+  <p>📍 Retiro en Young, Rio Negro</p>
 
   <p>🚚 Envíos a todo el país</p>
 
@@ -962,7 +985,71 @@
 
   }
 
+function updateDeliveryOptions() {
 
+  const delivery =
+    document.getElementById("delivery").value;
+
+  const shippingOptions =
+    document.getElementById("shippingOptions");
+
+if (delivery === "shipping") {
+
+  shippingOptions.style.display = "block";
+
+  document.getElementById("payment").innerHTML = `
+    <option value="BROU">🏦 Transferencia BROU</option>
+    <option value="Mercado Pago">💳 Mercado Pago</option>
+  `;
+
+} else {
+
+  shippingOptions.style.display = "none";
+
+  document.getElementById("payment").innerHTML = `
+    <option value="BROU">🏦 Transferencia BROU</option>
+    <option value="Mercado Pago">💳 Mercado Pago</option>
+    <option value="Efectivo">💵 Efectivo</option>
+    <option value="Débito">💳 Débito</option>
+    <option value="Crédito hasta 12 cuotas">💳 Crédito hasta 12 cuotas</option>
+  `;
+
+}
+
+  updateAddressField();
+}
+
+
+document
+  .getElementById("shippingType")
+  .addEventListener("change", updateAddressField);
+
+
+function updateAddressField() {
+
+  const shippingType =
+    document.getElementById("shippingType").value;
+
+  const address =
+    document.getElementById("address");
+
+  const addressLabel =
+    document.getElementById("addressLabel");
+
+
+  if (shippingType === "Envío a domicilio") {
+
+    address.style.display = "block";
+    addressLabel.style.display = "block";
+
+  } else {
+
+    address.style.display = "none";
+    addressLabel.style.display = "none";
+
+  }
+
+}
   function sendOrder() {
 
     if (cart.length === 0) {
@@ -1066,7 +1153,7 @@
 
 
     const whatsapp =
-      "5989952468";
+      "59899524468";
 
 
     window.open(
