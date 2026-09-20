@@ -1068,9 +1068,14 @@ alert("Llegué después del carrito");
     const phone =
       document.getElementById("customerPhone").value.trim();
 
-    const delivery =
-      document.getElementById("delivery").value;
-const shippingType = document.getElementById("shippingType").value;
+  const delivery =
+  document.getElementById("delivery").value;
+
+const shippingTypeElement =
+  document.getElementById("shippingType");
+
+const shippingType =
+  shippingTypeElement ? shippingTypeElement.value : "";
     alert("Paso 1");
     const address =
       document.getElementById("address").value.trim();
