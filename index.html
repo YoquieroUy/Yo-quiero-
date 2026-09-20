@@ -1061,26 +1061,34 @@ function updateAddressField() {
     }
 
 
-    const name =
-      document.getElementById("customerName").value.trim();
+    let name, phone, delivery, shippingType, address, payment;
 
-    const phone =
-      document.getElementById("customerPhone").value.trim();
+try {
 
-  const delivery =
-  document.getElementById("delivery").value;
+  name =
+    document.getElementById("customerName").value.trim();
 
-const shippingTypeElement =
-  document.getElementById("shippingType");
+  phone =
+    document.getElementById("customerPhone").value.trim();
 
-const shippingType =
-  shippingTypeElement ? shippingTypeElement.value : "";
-   
-    const address =
-      document.getElementById("address").value.trim();
+  delivery =
+    document.getElementById("delivery").value;
 
-    const payment =
-      document.getElementById("payment").value;
+  shippingType =
+    document.getElementById("shippingType").value;
+
+  address =
+    document.getElementById("address").value.trim();
+
+  payment =
+    document.getElementById("payment").value;
+
+} catch (error) {
+
+  alert("Encontré el problema: " + error.message);
+  return;
+
+}
 
 
     if (!name || !phone) {
