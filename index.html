@@ -1059,8 +1059,7 @@ function updateAddressField() {
       return;
 
     }
-alert("Llegué después del carrito");
-    alert("Voy a seguir");
+
 
     const name =
       document.getElementById("customerName").value.trim();
@@ -1076,13 +1075,12 @@ const shippingTypeElement =
 
 const shippingType =
   shippingTypeElement ? shippingTypeElement.value : "";
-    alert("Paso 1");
+   
     const address =
       document.getElementById("address").value.trim();
 
     const payment =
       document.getElementById("payment").value;
-    alert("Llegué al pago");
 
 
     if (!name || !phone) {
@@ -1105,7 +1103,7 @@ const shippingType =
 
     }
 
-
+alert("Llegué al mensaje");
     let message =
       "🛍️ *NUEVO PEDIDO — YO QUIERO*%0A%0A";
 
@@ -1163,7 +1161,6 @@ const shippingType =
     const whatsapp =
       "59899524468";
 
-  alert("Llegué hasta WhatsApp");
     
     window.open(
       `https://wa.me/${whatsapp}?text=${message}`,
