@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YO QUIERO | Maquillaje, perfumes y más</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffafa;
+            color: #222;
+        }
+
+        header {
+            background: white;
+            padding: 25px 6%;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 30px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: #f8e8ec;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #222;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .category {
+            background: white;
+            border: 1px solid #eee;
+            padding: 20px 10px;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .category:hover {
+            transform: translateY(-3px);
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        select, input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            padding-bottom: 18px;
+        }
+
+        .product-image {
+            height: 250px;
+            background: #f3eeee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 7px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .product button {
+            width: 100%;
+        }
+
+        .cart {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #222;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 20px;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo">YO QUIERO</div>
+
+        <nav>
+            <a href="#categorias">Categorías</a>
+            <a href="#productos">Productos</a>
+            <a href="#ofertas">Ofertas</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>YO QUIERO</h1>
+    <p>Maquillaje · Perfumes · Skincare · Accesorios</p>
+    <a href="#productos" class="button">Ver productos</a>
+</section>
+
+<section class="section" id="categorias">
+
+    <h2>Categorías</h2>
+
+    <div class="categories">
+        <div class="category">💋 Labios</div>
+        <div class="category">✨ Rostro</div>
+        <div class="category">🧰 Accesorios y herramientas</div>
+        <div class="category">👁️ Ojos y pestañas</div>
+        <div class="category">🧴 Skincare</div>
+        <div class="category">🌸 Perfumes</div>
+        <div class="category">💅 Uñas</div>
+        <div class="category">🎨 Paletas</div>
+    </div>
+
+</section>
+
+<section class="section" id="productos">
+
+    <h2>Productos</h2>
+
+    <div class="filters">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Buscar producto..."
+            onkeyup="filterProducts()"
+        >
+
+        <select id="categoryFilter" onchange="filterProducts()">
+            <option value="all">Todas las categorías</option>
+            <option value="Labios">Labios</option>
+            <option value="Rostro">Rostro</option>
+            <option value="Accesorios y herramientas">Accesorios y herramientas</option>
+            <option value="Ojos y pestañas">Ojos y pestañas</option>
+            <option value="Skincare">Skincare</option>
+            <option value="Perfumes">Perfumes</option>
+            <option value="Uñas">Uñas</option>
+            <option value="Paletas">Paletas</option>
+        </select>
+
+        <select id="stockFilter" onchange="filterProducts()">
+            <option value="all">Todo</option>
+            <option value="stock">En stock</option>
+            <option value="out">Agotado</option>
+        </select>
+
+    </div>
+
+    <div class="products" id="productList">
+
+        <div class="product"
+             data-category="Perfumes"
+             data-stock="stock"
+             data-name="Body Splash Velvet Petals">
+
+            <div class="product-image">
+                FOTO DEL PRODUCTO
+            </div>
+
+            <div class="product-info">
+                <h3>Velvet Petals</h3>
+                <p>Body Splash</p>
+                <br>
+                <div class="price">$980</div>
+                <button class="button"
+                    onclick="addToCart('Velvet Petals', 980)">
+                    Agregar al carrito
+                </button>
+            </div>
+
+        </div>
+
+        <div class="product"
+             data-category="Perfumes"
+             data-stock="stock"
+             data-name="Body Splash Bare Vanilla">
+
+            <div class="product-image">
+                FOTO DEL PRODUCTO
+            </div>
+
+            <div class="product-info">
+                <h3>Bare Vanilla</h3>
+                <p>Body Splash</p>
+                <br>
+                <div class="price">$980</div>
+                <button class="button"
+                    onclick="addToCart('Bare Vanilla', 980)">
+                    Agregar al carrito
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="ofertas">
+
+    <h2>Ofertas</h2>
+
+    <p style="text-align:center;">
+        Próximamente vas a encontrar nuestras promociones especiales.
+    </p>
+
+</section>
+
+<div class="cart" onclick="showCart()">
+    🛒 Carrito (<span id="cartCount">0</span>)
+</div>
+
+<footer>
+
+    <h3>YO QUIERO</h3>
+
+    <p style="margin-top:10px;">
+        Maquillaje · Perfumes · Skincare · Accesorios
+    </p>
+
+    <p style="margin-top:15px;">
+        Instagram y TikTok: @yo.quiero.uy
+    </p>
+
+    <p style="margin-top:10px;">
+        Retiro en Pequeños Genios · Envíos a todo el país
+    </p>
+
+</footer>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price) {
+
+    let existing = cart.find(item => item.name === name);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    updateCart();
+
+    alert("Producto agregado al carrito");
+}
+
+function updateCart() {
+
+    let totalQuantity = 0;
+
+    cart.forEach(item => {
+        totalQuantity += item.quantity;
+    });
+
+    document.getElementById("cartCount").innerText = totalQuantity;
+}
+
+function showCart() {
+
+    if (cart.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+    }
+
+    let message = "Hola! Quiero realizar este pedido:%0A%0A";
+    let total = 0;
+
+    cart.forEach(item => {
+
+        let subtotal = item.price * item.quantity;
+
+        message += item.name +
+            " x" +
+            item.quantity +
+            " - $" +
+            subtotal +
+            "%0A";
+
+        total += subtotal;
+    });
+
+    message += "%0ATotal: $" + total;
+
+    let phone = "5989952468";
+
+    window.open(
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        message,
+        "_blank"
+    );
+}
+
+function filterProducts() {
+
+    let search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    let category =
+        document.getElementById("categoryFilter")
+        .value;
+
+    let stock =
+        document.getElementById("stockFilter")
+        .value;
+
+    let products =
+        document.querySelectorAll(".product");
+
+    products.forEach(product => {
+
+        let name =
+            product.dataset.name.toLowerCase();
+
+        let productCategory =
+            product.dataset.category;
+
+        let productStock =
+            product.dataset.stock;
+
+        let matchesSearch =
+            name.includes(search);
+
+        let matchesCategory =
+            category === "all" ||
+            productCategory === category;
+
+        let matchesStock =
+            stock === "all" ||
+            (stock === "stock" && productStock === "stock") ||
+            (stock === "out" && productStock === "out");
+
+        if (
+            matchesSearch &&
+            matchesCategory &&
+            matchesStock
+        ) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
